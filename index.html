@@ -1,22 +1,65 @@
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>React [RU] Tutorial</title>
-    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>React [RU] Tutorial</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 
-    <!-- Don't use in production -->
-    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  <!-- Don't use in production -->
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
 </head>
 <body>
-    <div id="root"></div>
-    <script type="text/babel">
+  <div id="root"></div>
+  <script type="text/babel">
+    const App = () => {
+      return (
+        <React.Fragment>
+          <News />
+          <Comments />
+        </React.Fragment>
+      )
+    }
+
+    // class BigApp extends React.Component {
+    //   render() {
+    //     return (
+    //       <div>
+    //         <h1>I'm BigApp component</h1>
+    //         <p class="blue">U can put components inside one another</p>
+    //         <App />
+    //       </div>
+    //     )
+    //   }
+    // }
+
+    class ExtraBigApp extends React.Component {
+      render() {
+        return (
+          <React.Fragment>
+            <h2>I'm ExtraBigApp component</h2>
+            <p class="blue">U can put components inside one another</p>
+            <BigApp />
+            <News />
+          </React.Fragment>
+        )
+      }
+    }
+
+    const News = () => {
+      return <p>No news yet</p>
+    }
+
+    const Comments = () => {
+      return <p>No news - no comments</p>
+    }
+
     ReactDOM.render(
-        <h1>Hello, World!</h1>,
-        document.getElementById('root')
+      <App />,
+      document.getElementById('root')
     );
-    </script>
+  </script>
 </body>
 </html>
