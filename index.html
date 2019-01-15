@@ -17,39 +17,56 @@
     const App = () => {
       return (
         <React.Fragment>
-          <News />
+          <News lastNews={myNews}/>
           <Comments />
         </React.Fragment>
       )
     }
 
-    // class BigApp extends React.Component {
-    //   render() {
-    //     return (
-    //       <div>
-    //         <h1>I'm BigApp component</h1>
-    //         <p class="blue">U can put components inside one another</p>
-    //         <App />
-    //       </div>
-    //     )
-    //   }
-    // }
+    const myNews = [
+      {
+        id=1,
+        author: 'Sasha Gray',
+        text: 'Awesome actress'
+      },
+      {
+        id=2,
+        author: 'Second Sasha Gray',
+        text: 'Second awesome actress'
+      },
+      {
+        id=3,
+        author: 'Third Sasha Gray',
+        text: 'Third awesome actress'
+      },
+      {
+        id=4,
+        author: 'Fourth Sasha Gray',
+        text: 'Fourth awesome actress'
+      },
+    ]
 
-    class ExtraBigApp extends React.Component {
+    class News extends React.Component {
       render() {
+        const newsContent = this.props.lastNews.map(function(item, index) {
+          return (
+            <div key={item.id}>
+              <p className="news__author">{item.author}:</p>
+              <p className="news__text">{item.text}</p>
+            </div>
+          )
+        })
+        console.log(newsContent)
+        
         return (
-          <React.Fragment>
-            <h2>I'm ExtraBigApp component</h2>
-            <p class="blue">U can put components inside one another</p>
-            <BigApp />
-            <News />
-          </React.Fragment>
+          <div className="news">
+            {newsContent}
+          </div>
         )
+        // return (
+        //   <p>No news yet</p>
+        // )
       }
-    }
-
-    const News = () => {
-      return <p>No news yet</p>
     }
 
     const Comments = () => {
