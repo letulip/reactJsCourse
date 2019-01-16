@@ -23,44 +23,59 @@
       )
     }
 
-    const myNews = [
+    let myNews = [
       {
-        id=1,
+        id:1,
         author: 'Sasha Gray',
         text: 'Awesome actress'
       },
       {
-        id=2,
+        id:2,
         author: 'Second Sasha Gray',
         text: 'Second awesome actress'
       },
       {
-        id=3,
+        id:3,
         author: 'Third Sasha Gray',
         text: 'Third awesome actress'
       },
       {
-        id=4,
+        id:4,
         author: 'Fourth Sasha Gray',
         text: 'Fourth awesome actress'
       },
     ]
 
+    // myNews = []
+
     class News extends React.Component {
       render() {
-        const newsContent = this.props.lastNews.map(function(item, index) {
-          return (
-            <div key={item.id}>
-              <p className="news__author">{item.author}:</p>
-              <p className="news__text">{item.text}</p>
-            </div>
-          )
-        })
+        const data = this.props.lastNews
+        let newsContent
+        
+        if (data.length) {
+          newsContent = data.map(function(item, index) {
+            return (
+              <div className="news__article" key={item.id}>
+                <p className="news__author">{item.author}:</p>
+                <p className="news__text">{item.text}</p>
+              </div>
+            )
+          })
+        } else {
+          newsContent = <p className="red">No news yet</p>
+        }
+
         console.log(newsContent)
         
         return (
           <div className="news">
             {newsContent}
+            <strong className={data.length ? '' : 'displayNone'}>News count: {newsContent.length}</strong>
+            {
+              data.length ? <strong>News count: {newsContent.length}</strong> : null
+            }
+            <strong className={data.length ? '' : 'displayNone'}>News count: {newsContent.length}</strong>
           </div>
         )
         // return (
