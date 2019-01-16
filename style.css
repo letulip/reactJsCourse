@@ -5,3 +5,23 @@
 .blue {
   color: blue;
 }
+
+.displayNone {
+  display: none;
+}
+
+.news__article {
+  width: 250px;
+  min-height: 50px;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px 0px;
+  margin: 5px;
+  background-color: burlywood;
+
+}
+
+.news__author,
+.news__text {
+  margin: 5px;
+}
