@@ -29,35 +29,56 @@
       {
         id:1,
         author: 'Sasha Gray',
-        text: 'Awesome actress'
+        text: 'Awesome actress',
+        bigText: 'Further big text about Sasha'
       },
       {
         id:2,
         author: 'Second Sasha Gray',
-        text: 'Second awesome actress'
+        text: 'Second awesome actress',
+        bigText: 'Further big text about Sasha'
       },
       {
         id:3,
         author: 'Third Sasha Gray',
-        text: 'Third awesome actress'
+        text: 'Third awesome actress',
+        bigText: 'Further big text about Sasha'
       },
       {
         id:4,
         author: 'Fourth Sasha Gray',
-        text: 'Fourth awesome actress'
+        text: 'Fourth awesome actress',
+        bigText: 'Further big text about Sasha'
       },
     ]
 
     // myNews = []
 
     class NewsArticle extends React.Component {
+      state = {
+        visible: false,
+      }
+
+      readMoreOnClick = (evt) => {
+        evt.preventDefault()
+        this.setState({ visible: true })
+      }
+
       render() {
-        const { author, text } = this.props.data
+        const { author, text, bigText } = this.props.data
+        const { visible } = this.state
 
         return (
           <article className="news__article">
             <p className="news__author">{author}:</p>
             <p className="news__text">{text}</p>
+            {
+              !visible ? <a href="#" className="news__readmore" onClick={this.readMoreOnClick}>Read more..</a> : null
+            }
+            
+            {
+              visible ? <p className="news__text news__text--big">{bigText}</p> : null
+            }
           </article>
         )
       }

@@ -22,6 +22,7 @@
 }
 
 .news__author,
-.news__text {
+.news__text,
+.news__readmore {
   margin: 5px;
 }
