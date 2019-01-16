@@ -17,6 +17,7 @@
     const App = () => {
       return (
         <React.Fragment>
+          <h3>News</h3>
           <News lastNews={myNews}/>
           <Comments />
         </React.Fragment>
@@ -48,39 +49,47 @@
 
     // myNews = []
 
-    class News extends React.Component {
+    class NewsArticle extends React.Component {
       render() {
-        const data = this.props.lastNews
-        let newsContent
-        
+        const { author, text } = this.props.data
+
+        return (
+          <article className="news__article">
+            <p className="news__author">{author}:</p>
+            <p className="news__text">{text}</p>
+          </article>
+        )
+      }
+    }
+
+    class News extends React.Component {
+
+      renderNews = (data) => {
+        let newsContent = null
+
         if (data.length) {
-          newsContent = data.map(function(item, index) {
-            return (
-              <div className="news__article" key={item.id}>
-                <p className="news__author">{item.author}:</p>
-                <p className="news__text">{item.text}</p>
-              </div>
-            )
+          newsContent = data.map(function(item) {
+            return <NewsArticle key={item.id} data={item} />
           })
         } else {
           newsContent = <p className="red">No news yet</p>
         }
 
-        console.log(newsContent)
+        return newsContent
+      }
+
+      render() {
+      const data = this.props.lastNews
         
         return (
           <div className="news">
-            {newsContent}
-            <strong className={data.length ? '' : 'displayNone'}>News count: {newsContent.length}</strong>
+            {this.renderNews(data)}
+
             {
-              data.length ? <strong>News count: {newsContent.length}</strong> : null
+              data.length ? <strong>News count: {data.length}</strong> : null
             }
-            <strong className={data.length ? '' : 'displayNone'}>News count: {newsContent.length}</strong>
           </div>
         )
-        // return (
-        //   <p>No news yet</p>
-        // )
       }
     }
 
