@@ -10,6 +10,7 @@
 
   <!-- Don't use in production -->
   <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
 </head>
 <body>
   <div id="root"></div>
@@ -91,6 +92,10 @@
           </div>
         )
       }
+    }
+
+    News.propTypes = {
+      lastNews: PropTypes.array.isRequired
     }
 
     const Comments = () => {
