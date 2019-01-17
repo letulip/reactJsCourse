@@ -19,6 +19,7 @@
       return (
         <React.Fragment>
           <h3>News</h3>
+          <TestInput />
           <News lastNews={myNews}/>
           <Comments />
         </React.Fragment>
@@ -84,6 +85,38 @@
       }
     }
 
+    class TestInput extends React.Component {
+      constructor(props) {
+        super(props)
+        this.input = React.createRef()
+      }
+
+      buttonInputOnClick = () => {
+        console.log(this.input.current.value);
+        
+      }
+
+      render() {
+        return (
+          <React.Fragment>
+            <input
+              className="textInput"
+              placeholder="Put some here"
+              defaultValue=""
+              ref={this.input}
+              onChange={this.textInputOnChange}
+            />
+            <input
+              className="buttonInput"
+              type="button"
+              onClick={this.buttonInputOnClick}
+              value="Click!"
+            />
+          </React.Fragment>
+        )
+      }
+    }
+
     class News extends React.Component {
       state = {
         counter: 0,
@@ -103,10 +136,6 @@
         return newsContent
       }
 
-      newsCountOnClick = () => {
-        this.setState({ counter: ++this.state.counter })
-      }
-
       render() {
       const data = this.props.lastNews
       const { counter } = this.state
@@ -118,7 +147,6 @@
             {
               data.length ? <strong onClick={this.newsCountOnClick}>News count: {data.length}</strong> : null
             }
-            <p className="blue">ClickCounter: {counter}</p>
           </div>
         )
       }
